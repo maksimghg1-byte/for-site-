@@ -50,10 +50,24 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Mobile Menu (Placeholder Logic)
+// Mobile Menu Logic
 const mobileBtn = document.querySelector('.mobile-menu-btn');
-if (mobileBtn) {
+const navLinks = document.querySelector('.nav-links');
+
+if (mobileBtn && navLinks) {
     mobileBtn.addEventListener('click', () => {
-        alert('Мобильное меню будет реализовано в следующей итерации!');
+        mobileBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    });
+
+    // Close menu when clicking on a link
+    const navItems = navLinks.querySelectorAll('a');
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            mobileBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
     });
 }
